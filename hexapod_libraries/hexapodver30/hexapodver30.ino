@@ -60,8 +60,8 @@ void SERCOM0_Handler()
  *                  3
  *                  4
  */
-int videbug=0;  // se messo a 0 nasconde la visualizzazione del debug sul terminale
-int debshow=0;       // visualizzazione debug
+int videbug=0;  // if set to 0 it hides the debug display on the terminal
+int debshow=0;  // debug view
 
 
 int viposizioni=0;
