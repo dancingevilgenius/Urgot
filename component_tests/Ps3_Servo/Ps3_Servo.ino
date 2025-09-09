@@ -258,7 +258,7 @@ void setup()
 {
     Serial.begin(115200);
 
-    //Ps3.attach(notify);
+    Ps3.attach(notify);
     //Ps3.attach(ps3Controls);
     Ps3.attachOnConnect(onConnect);
     Ps3.begin(PS3_BLACK_BLACK);
@@ -266,6 +266,27 @@ void setup()
     setupESP32Servo();
 
     Serial.println("Ready.");
+}
+
+void checkButtonCombos(){
+    //------ Digital cross/square/triangle/circle buttons ------
+    if( Ps3.data.button.cross && Ps3.data.button.down )
+        Serial.println("Pressing both the down and cross buttons");
+    if( Ps3.data.button.square && Ps3.data.button.left )
+        Serial.println("Pressing both the square and left buttons");
+    if( Ps3.data.button.triangle && Ps3.data.button.up )
+        Serial.println("Pressing both the triangle and up buttons");
+    if( Ps3.data.button.circle && Ps3.data.button.right )
+        Serial.println("Pressing both the circle and right buttons");
+
+    if( Ps3.data.button.l1 && Ps3.data.button.r1 )
+        Serial.println("Pressing both the left and right bumper buttons");
+    if( Ps3.data.button.l2 && Ps3.data.button.r2 )
+        Serial.println("Pressing both the left and right trigger buttons");
+    if( Ps3.data.button.l3 && Ps3.data.button.r3 )
+        Serial.println("Pressing both the left and right stick buttons");
+    if( Ps3.data.button.select && Ps3.data.button.start )
+        Serial.println("Pressing both the select and start buttons");    
 }
 
 void loop()
@@ -286,24 +307,7 @@ void loop()
     if(player > 10) player = 0;
 
 
-    //------ Digital cross/square/triangle/circle buttons ------
-    if( Ps3.data.button.cross && Ps3.data.button.down )
-        Serial.println("Pressing both the down and cross buttons");
-    if( Ps3.data.button.square && Ps3.data.button.left )
-        Serial.println("Pressing both the square and left buttons");
-    if( Ps3.data.button.triangle && Ps3.data.button.up )
-        Serial.println("Pressing both the triangle and up buttons");
-    if( Ps3.data.button.circle && Ps3.data.button.right )
-        Serial.println("Pressing both the circle and right buttons");
 
-    if( Ps3.data.button.l1 && Ps3.data.button.r1 )
-        Serial.println("Pressing both the left and right bumper buttons");
-    if( Ps3.data.button.l2 && Ps3.data.button.r2 )
-        Serial.println("Pressing both the left and right trigger buttons");
-    if( Ps3.data.button.l3 && Ps3.data.button.r3 )
-        Serial.println("Pressing both the left and right stick buttons");
-    if( Ps3.data.button.select && Ps3.data.button.start )
-        Serial.println("Pressing both the select and start buttons");
 
 
     // Added by Carlos
