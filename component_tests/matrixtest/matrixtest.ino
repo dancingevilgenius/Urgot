@@ -8,7 +8,9 @@
  #define PSTR // Make Arduino Due happy
 #endif
 
-#define PIN 6 // original 6 - carlos
+#define PIN 6
+#define TILE_HEIGHT 8
+#define TILE_WIDTH 8
 
 // MATRIX DECLARATION:
 // Parameter 1 = width of NeoPixel matrix
@@ -36,7 +38,7 @@
 // Arduino.  When held that way, the first pixel is at the top right, and
 // lines are arranged in columns, progressive order.  The shield uses
 // 800 KHz (v2) pixels that expect GRB color data.
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(5, 8, PIN,
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(TILE_WIDTH, TILE_HEIGHT, PIN,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
   NEO_GRB            + NEO_KHZ800);
