@@ -11,8 +11,11 @@
 #define DATA_PIN 6
 #define TILE_HEIGHT 8
 #define TILE_WIDTH 8
-#define NUM_TILES 2
+#define NUM_TILES 1
 #define BRIGHTNESS 4 // 40 be enough for most purposes
+#define COLOR_RED 0
+#define COLOR_GREEN 1
+#define COLOR_BLUE 2
 
 // MATRIX DECLARATION:
 // Parameter 1 = width of NeoPixel matrix
@@ -43,7 +46,7 @@
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
   TILE_WIDTH * NUM_TILES, TILE_HEIGHT,
   DATA_PIN,
-  NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
+  NEO_MATRIX_TOP     + NEO_MATRIX_LEFT + // Originally NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
   NEO_GRB            + NEO_KHZ800);
 
@@ -56,21 +59,44 @@ void setup() {
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(BRIGHTNESS);
-  matrix.setTextColor(colors[0]);
+  matrix.setTextColor(colors[COLOR_BLUE]);
 }
 
-int x    = matrix.width();
-int pass = 0;
+bool isOdd(int16_t n){
+  return n % 2;
+}
+
+void drawCorrectPixel(int16_t x, int16_t y, uint16_t color){
+    if(isOdd(x)){
+        matrix.drawPixel(x, y+7, color);
+    } else {
+        matrix.drawPixel(x, y, color);
+    }
+}
 
 void loop() {
   matrix.fillScreen(0);
-  matrix.setCursor(x, 0);
-  matrix.print(F("Howdy"));
-  if(--x < -36) {
-    x = matrix.width();
-    if(++pass >= 3) pass = 0;
-    matrix.setTextColor(colors[pass]);
-  }
+
+  //matrix.fillRect(0, 0, 4, 4, colors[0]);
+  //matrix.drawLine(0, 0, 3, 1, colors[COLOR_BLUE]);
+  //matrix.drawPixel(0, 0, colors[COLOR_BLUE]);
+  //matrix.drawPixel(1, 0, colors[COLOR_BLUE]);
+  //matrix.drawPixel(2, 0, colors[COLOR_BLUE]);
+
+  drawCorrectPixel(0, 0, colors[COLOR_BLUE]);
+  drawCorrectPixel(1, 0, colors[COLOR_BLUE]);
+  drawCorrectPixel(2, 0, colors[COLOR_BLUE]);
+  drawCorrectPixel(3, 0, colors[COLOR_BLUE]);
+  drawCorrectPixel(4, 0, colors[COLOR_BLUE]);
+
+  drawCorrectPixel(0, 2, colors[COLOR_RED]);
+  drawCorrectPixel(1, 2, colors[COLOR_RED]);
+  drawCorrectPixel(2, 2, colors[COLOR_RED]);
+  drawCorrectPixel(3, 2, colors[COLOR_RED]);
+  drawCorrectPixel(4, 2, colors[COLOR_RED]);
+
+
+
   matrix.show();
   delay(100);
 }
