@@ -11,7 +11,7 @@
 #define DATA_PIN 6
 #define TILE_HEIGHT 8
 #define TILE_WIDTH 8
-#define NUM_TILES 1
+#define NUM_TILES 2
 #define BRIGHTNESS 4 // 40 be enough for most purposes
 #define COLOR_RED 0
 #define COLOR_GREEN 1
@@ -67,9 +67,9 @@ bool isOdd(int16_t n){
 }
 
 void drawCorrectPixel(int16_t x, int16_t y, uint16_t color){
-    if(isOdd(x)){
-        matrix.drawPixel(x, y+7, color);
-    } else {
+    if(isOdd(x)) {
+        matrix.drawPixel(x, y+(TILE_HEIGHT - 1) - 2*y, color);
+    } else { 
         matrix.drawPixel(x, y, color);
     }
 }
@@ -82,18 +82,31 @@ void loop() {
   //matrix.drawPixel(0, 0, colors[COLOR_BLUE]);
   //matrix.drawPixel(1, 0, colors[COLOR_BLUE]);
   //matrix.drawPixel(2, 0, colors[COLOR_BLUE]);
-
+  // Y OFFSET 0
   drawCorrectPixel(0, 0, colors[COLOR_BLUE]);
   drawCorrectPixel(1, 0, colors[COLOR_BLUE]);
   drawCorrectPixel(2, 0, colors[COLOR_BLUE]);
   drawCorrectPixel(3, 0, colors[COLOR_BLUE]);
   drawCorrectPixel(4, 0, colors[COLOR_BLUE]);
+  
+  // Y OFFSET 2
+  drawCorrectPixel(0, 1, colors[COLOR_RED]);
+  drawCorrectPixel(1, 1, colors[COLOR_RED]);
+  drawCorrectPixel(2, 1, colors[COLOR_RED]);
+  drawCorrectPixel(3, 1, colors[COLOR_RED]);
+  drawCorrectPixel(4, 1, colors[COLOR_RED]);
+  drawCorrectPixel(5, 1, colors[COLOR_RED]);
+  drawCorrectPixel(6, 1, colors[COLOR_RED]);
+  drawCorrectPixel(7, 1, colors[COLOR_RED]);
+  drawCorrectPixel(8, 1, colors[COLOR_RED]);
+  drawCorrectPixel(9, 1, colors[COLOR_RED]);
 
-  drawCorrectPixel(0, 2, colors[COLOR_RED]);
-  drawCorrectPixel(1, 2, colors[COLOR_RED]);
-  drawCorrectPixel(2, 2, colors[COLOR_RED]);
-  drawCorrectPixel(3, 2, colors[COLOR_RED]);
-  drawCorrectPixel(4, 2, colors[COLOR_RED]);
+  // Y OFFSET 4
+  drawCorrectPixel(0, 2, colors[COLOR_GREEN]);
+  drawCorrectPixel(1, 2, colors[COLOR_GREEN]);
+  drawCorrectPixel(2, 2, colors[COLOR_GREEN]);
+  drawCorrectPixel(3, 2, colors[COLOR_GREEN]);
+  drawCorrectPixel(4, 2, colors[COLOR_GREEN]);
 
 
 
