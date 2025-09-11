@@ -83,7 +83,7 @@ void setServoPulse(uint8_t n, double pulse) {
   pwm.setPWM(n, 0, pulse);
 }
 
-void loop() {
+void originalServoTest(){
   // Drive each servo one at a time using setPWM()
   Serial.println(servonum);
   for (uint16_t pulselen = SERVOMIN; pulselen < SERVOMAX; pulselen++) {
@@ -111,8 +111,13 @@ void loop() {
   delay(500);
 
   servonum++;
-  if (servonum > 7) {
+  if (servonum > 4) {
     servonum = 0; // Testing the first 8 servo channels
     exit(0);
   }
+}
+
+
+void loop() {
+  originalServoTest();
 }
