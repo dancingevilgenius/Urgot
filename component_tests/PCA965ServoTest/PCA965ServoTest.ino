@@ -119,5 +119,29 @@ void originalServoTest(){
 
 
 void loop() {
-  originalServoTest();
+  //originalServoTest();
+  servonum=0;
+  // Drive each servo one at a time using setPWM()
+ // Drive each servo one at a time using setPWM()
+  Serial.println("servonum: " + servonum);
+
+  Serial.println("ramp up to MAX");
+  for (uint16_t pulselen = SERVOMIN; pulselen < SERVOMAX; pulselen++) {
+    pwm.setPWM(servonum, 0, pulselen);
+  }
+
+  delay(1500);
+  Serial.println("ramp down to MIN");
+  for (uint16_t pulselen = SERVOMAX; pulselen > SERVOMIN; pulselen--) {
+    pwm.setPWM(servonum, 0, pulselen);
+  }
+
+  delay(1500);
+  Serial.println("go to CENTER");
+  uint16_t center = (SERVOMIN + SERVOMAX)/2;
+  for (uint16_t pulselen = SERVOMIN; pulselen < center; pulselen++) {
+    pwm.setPWM(servonum, 0, pulselen);
+  }
+  Serial.println("centered");
+  delay(8000);
 }
