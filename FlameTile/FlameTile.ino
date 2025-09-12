@@ -54,6 +54,8 @@ const uint16_t colors[] = {
   matrix.Color(255, 0, 0),    // Red
   matrix.Color(255, 90, 0),    // 
   matrix.Color(255, 154, 0),    // 
+  matrix.Color(255, 154, 0),    // 
+  matrix.Color(255, 154, 0),    // 
   matrix.Color(255, 206, 0),    // 
   matrix.Color(255, 234, 8) };  // Yellow
 
@@ -62,6 +64,8 @@ void setup() {
   matrix.setTextWrap(false);
   matrix.setBrightness(BRIGHTNESS);
   matrix.setTextColor(colors[0]);
+
+  matrix.fillScreen(colors[3]);
 }
 
 bool isOdd(int16_t n){
@@ -87,12 +91,20 @@ void fillOneColor(uint16_t color){
 }
 
 void loop() {   
-  matrix.fillScreen(0);
+  
 
   int randIndex = random(0,5); 
 
-  fillOneColor(colors[randIndex]);
+  //fillOneColor(colors[2]);
+
+  for(int i=0 ; i<8 ; i++){
+    for(int j=0 ; j<8 ; j++){
+      if(random(0,100) > 90){
+        drawCorrectPixel(i, j, colors[random(0, 6)]); 
+      }       
+    }    
+  }
 
   matrix.show();
-  delay(600);
+  delay(200);
 }
