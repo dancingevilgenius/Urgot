@@ -74,6 +74,15 @@ void drawCorrectPixel(int16_t x, int16_t y, uint16_t color){
     }
 }
 
+void drawRectangle(int16_t topLeftX, int16_t topLeftY, int16_t width, int16_t height, int16_t color){
+  for(int i=0 ; i<width ; i++){
+    for(int j=0 ; j<height ; j++) {
+      drawCorrectPixel(topLeftX + i, topLeftY + j, color);
+    }
+  }
+}
+
+
 void loop() {
   matrix.fillScreen(0);
 
@@ -83,31 +92,33 @@ void loop() {
   //matrix.drawPixel(1, 0, colors[COLOR_BLUE]);
   //matrix.drawPixel(2, 0, colors[COLOR_BLUE]);
   // Y OFFSET 0
-  drawCorrectPixel(0, 0, colors[COLOR_BLUE]);
-  drawCorrectPixel(1, 0, colors[COLOR_BLUE]);
-  drawCorrectPixel(2, 0, colors[COLOR_BLUE]);
-  drawCorrectPixel(3, 0, colors[COLOR_BLUE]);
-  drawCorrectPixel(4, 0, colors[COLOR_BLUE]);
-  
+  // drawCorrectPixel(0, 0, colors[COLOR_BLUE]);
+  // drawCorrectPixel(1, 0, colors[COLOR_BLUE]);
+  // drawCorrectPixel(2, 0, colors[COLOR_BLUE]);
+  // drawCorrectPixel(3, 0, colors[COLOR_BLUE]);
+  // drawCorrectPixel(4, 0, colors[COLOR_BLUE]);
+  drawRectangle(0, 0, 13, 5, colors[COLOR_GREEN]);
+
   // Y OFFSET 2
-  drawCorrectPixel(0, 1, colors[COLOR_RED]);
-  drawCorrectPixel(1, 1, colors[COLOR_RED]);
-  drawCorrectPixel(2, 1, colors[COLOR_RED]);
-  drawCorrectPixel(3, 1, colors[COLOR_RED]);
-  drawCorrectPixel(4, 1, colors[COLOR_RED]);
-  drawCorrectPixel(5, 1, colors[COLOR_RED]);
-  drawCorrectPixel(6, 1, colors[COLOR_RED]);
-  drawCorrectPixel(7, 1, colors[COLOR_RED]);
-  drawCorrectPixel(8, 1, colors[COLOR_RED]);
-  drawCorrectPixel(9, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(0, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(1, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(2, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(3, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(4, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(5, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(6, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(7, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(8, 1, colors[COLOR_RED]);
+  // drawCorrectPixel(9, 1, colors[COLOR_RED]);
+  drawRectangle(0, 5, 10, 3, colors[COLOR_BLUE]);
 
   // Y OFFSET 4
-  drawCorrectPixel(0, 2, colors[COLOR_GREEN]);
-  drawCorrectPixel(1, 2, colors[COLOR_GREEN]);
-  drawCorrectPixel(2, 2, colors[COLOR_GREEN]);
-  drawCorrectPixel(3, 2, colors[COLOR_GREEN]);
-  drawCorrectPixel(4, 2, colors[COLOR_GREEN]);
-
+  // drawCorrectPixel(0, 2, colors[COLOR_GREEN]);
+  // drawCorrectPixel(1, 2, colors[COLOR_GREEN]);
+  // drawCorrectPixel(2, 2, colors[COLOR_GREEN]);
+  // drawCorrectPixel(3, 2, colors[COLOR_GREEN]);
+  // drawCorrectPixel(4, 2, colors[COLOR_GREEN]);
+  
 
 
   matrix.show();
