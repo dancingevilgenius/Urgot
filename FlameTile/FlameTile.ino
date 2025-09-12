@@ -90,9 +90,7 @@ void fillOneColor(uint16_t color){
 
 }
 
-void loop() {   
-  
-
+void flicker1(){
   int randIndex = random(0,5); 
 
   //fillOneColor(colors[2]);
@@ -107,4 +105,10 @@ void loop() {
 
   matrix.show();
   delay(200);
+}
+
+void loop() {   
+  
+  flicker1();
+
 }
