@@ -52,14 +52,16 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
 
 const uint16_t colors[] = {
   matrix.Color(255, 0, 0),    // Red
-  matrix.Color(0, 255, 0),    // Green
-  matrix.Color(0, 0, 255) };  // Blue
+  matrix.Color(255, 90, 0),    // 
+  matrix.Color(255, 154, 0),    // 
+  matrix.Color(255, 206, 0),    // 
+  matrix.Color(255, 234, 8) };  // Yellow
 
 void setup() {
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(BRIGHTNESS);
-  matrix.setTextColor(colors[COLOR_BLUE]);
+  matrix.setTextColor(colors[0]);
 }
 
 bool isOdd(int16_t n){
@@ -84,11 +86,13 @@ void fillOneColor(uint16_t color){
 
 }
 
-void loop() { 
+void loop() {   
   matrix.fillScreen(0);
 
-  fillOneColor(colors[COLOR_BLUE]);
+  int randIndex = random(0,5); 
+
+  fillOneColor(colors[randIndex]);
 
   matrix.show();
-  delay(200);
+  delay(600);
 }
