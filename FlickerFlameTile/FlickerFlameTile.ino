@@ -77,16 +77,18 @@ const uint8_t flaredecay = 14;  /* decay rate of flare radiation; 14 is good */
 /* This is the map of colors from coolest (black) to hottest. Want blue flames? Go for it! */
 const uint32_t colors[] = {
   //0x000000,
-  0x100000,
-  0x300000,
-  0x600000,
-  0x800000,
-  0xA00000,
+  //0x100000,
+  //0x300000,
+  0x600200,
+  0x800400,
+  0xA01000,
   0xC02000,
   0xC04000,
-  0xC06000,
-  0xC08000,
-  0xC09080
+  0xff9a00,
+  0xffce00,
+  0xffe808,
+  0xffff08,
+  0xffffaa
 };
 const uint8_t NCOLORS = (sizeof(colors)/sizeof(colors[0]));
 
