@@ -8,11 +8,11 @@
  #define PSTR // Make Arduino Due happy
 #endif
 
-#define DATA_PIN 6
+#define DATA_PIN 13 // 6 for Arduino, 13 for ESP32 Dev Module
 #define TILE_HEIGHT 8
 #define TILE_WIDTH 8
 #define NUM_TILES 2
-#define BRIGHTNESS 4 // 40 be enough for most purposes
+#define BRIGHTNESS 40 // 40 be enough for most purposes
 #define COLOR_RED 0
 #define COLOR_GREEN 1
 #define COLOR_BLUE 2
@@ -122,5 +122,5 @@ void loop() {
 
 
   matrix.show();
-  delay(100);
+  delay(250);
 }
