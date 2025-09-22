@@ -17,6 +17,17 @@
 #define COLOR_GREEN 1
 #define COLOR_BLUE 2
 
+// Start of vars for buttontest
+const byte LED_PIN_HEALTH = 12;
+const byte LED_PIN_MANA = 14;
+const byte  PIN_HEALTH = 25;  // input pin that the interruption will be attached to
+const byte  PIN_MANA = 26;  // input pin that the interruption will be attached to
+volatile byte healthState = LOW;  // variable that will be updated in the ISR
+volatile byte manaState = LOW;  // variable that will be updated in the ISR
+int healthWidth = 12;
+int manaWidth = 7; 
+// End of vars for button test
+
 // MATRIX DECLARATION:
 // Parameter 1 = width of NeoPixel matrix
 // Parameter 2 = height of matrix
@@ -56,12 +67,30 @@ const uint16_t colors[] = {
   matrix.Color(0, 0, 255) };  // Blue
 
 void setup() {
+
+  Serial.begin(9600);
+  Serial.println("Start HealthBar");
+
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(BRIGHTNESS);
   matrix.setTextColor(colors[COLOR_BLUE]);
+
+  // Button testing
+  attachInterrupt(digitalPinToInterrupt(PIN_HEALTH), blink, CHANGE);  
+  //attachInterrupt(digitalPinToInterrupt(PIN_MANA), blink, CHANGE);  
 }
 
+
+void blink() {
+  healthState = !healthState;
+  manaState = !manaState;
+  
+  healthWidth++;
+  manaWidth++;
+  Serial.println("healthWidth:" + healthWidth);
+  Serial.println("manaWidth:" + manaWidth);
+}
 bool isOdd(int16_t n){
   return n % 2;
 }
@@ -86,31 +115,11 @@ void drawRectangle(int16_t topLeftX, int16_t topLeftY, int16_t width, int16_t he
 void loop() {
   matrix.fillScreen(0);
 
-  //matrix.fillRect(0, 0, 4, 4, colors[0]);
-  //matrix.drawLine(0, 0, 3, 1, colors[COLOR_BLUE]);
-  //matrix.drawPixel(0, 0, colors[COLOR_BLUE]);
-  //matrix.drawPixel(1, 0, colors[COLOR_BLUE]);
-  //matrix.drawPixel(2, 0, colors[COLOR_BLUE]);
-  // Y OFFSET 0
-  // drawCorrectPixel(0, 0, colors[COLOR_BLUE]);
-  // drawCorrectPixel(1, 0, colors[COLOR_BLUE]);
-  // drawCorrectPixel(2, 0, colors[COLOR_BLUE]);
-  // drawCorrectPixel(3, 0, colors[COLOR_BLUE]);
-  // drawCorrectPixel(4, 0, colors[COLOR_BLUE]);
-  drawRectangle(0, 0, 13, 5, colors[COLOR_GREEN]);
 
-  // Y OFFSET 2
-  // drawCorrectPixel(0, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(1, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(2, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(3, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(4, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(5, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(6, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(7, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(8, 1, colors[COLOR_RED]);
-  // drawCorrectPixel(9, 1, colors[COLOR_RED]);
-  drawRectangle(0, 5, 10, 3, colors[COLOR_BLUE]);
+  drawRectangle(0, 0, healthWidth, 5, colors[COLOR_GREEN]);
+
+
+  drawRectangle(0, 5, manaWidth, 3, colors[COLOR_BLUE]);
 
   // Y OFFSET 4
   // drawCorrectPixel(0, 2, colors[COLOR_GREEN]);
