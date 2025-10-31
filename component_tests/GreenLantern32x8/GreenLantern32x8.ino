@@ -28,7 +28,7 @@ int matrixH = 8;
 
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(matrixW, matrixH, PIN,
                             NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-                            NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
+                            NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG, //NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG
                             NEO_GRB            + NEO_KHZ800);
 
 const uint16_t colors[] = {
@@ -103,7 +103,7 @@ void writeText(String msg) {
    
     }
     matrix.show(); // DISPLAY the Text/Image
-    delay(60); // SPEED OF SCROLLING or FRAME RATE;
+    delay(100); // SPEED OF SCROLLING or FRAME RATE;
   }
 
 
