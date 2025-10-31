@@ -49,12 +49,13 @@ void setup() {
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(5);
-  matrix.setTextColor(colors[0]);
+  matrix.setTextColor(colors[1]);
 }
 
 void loop() {
   int arrSize = arr_len( colors );
-  char exampleText[] = "Happy Birthday James!"; // SCROLLING Message of Your Choice;
+  //char exampleText[] = "Superman could not make it. You got an upgrade"; // SCROLLING Message of Your Choice;
+  char exampleText[] = "SUPERMAN COULD NOT MAKE IT. YOU GOT AN UPGRADE"; // SCROLLING Message of Your Choice;
   writeText(exampleText);
   delay(1000);
 
@@ -82,11 +83,11 @@ void writeText(String msg) {
   int scrollingMax = (msgSize) + matrix.width(); // ADJUST Displacement for message length;
 
   x = matrix.width(); // RESET Cursor Position and Start Text String at New Position on the Far Right;
-  clr = 0; // RESET Color/Repeat Index;
+
 
   while (clr <= arrSize) {
     /* Change Color with Each Pass of Complete Message */
-    matrix.setTextColor(colors[clr]);
+    matrix.setTextColor(colors[1]);
 
     matrix.fillScreen(0); // BLANK the Entire Screen;
     matrix.setCursor(x, 0); // Set Starting Point for Text String;
@@ -99,12 +100,12 @@ void writeText(String msg) {
 	  // This Animates (moves) the text by one pixel to the Left;
 
       x = matrix.width(); // After Scrolling by scrollingMax pixels, RESET Cursor Position and Start String at New Position on the Far Right;
-      ++clr; // INCREMENT COLOR/REPEAT LOOP COUNTER AFTER MESSAGE COMPLETED;
+   
     }
     matrix.show(); // DISPLAY the Text/Image
-    delay(40); // SPEED OF SCROLLING or FRAME RATE;
+    delay(60); // SPEED OF SCROLLING or FRAME RATE;
   }
-  clr = 0; // Reset Color/Loop Counter;
+
 
 /* LATHER - RINSE - REPEAT - Why coders have such nice hair */
 }
