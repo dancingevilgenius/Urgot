@@ -81,8 +81,11 @@ int debugmode = 0;          // Set to 1 to get more debug messages. Warning: thi
 #include <SdFat.h>
 SdFat SD;
 
+#include <esp_system.h>
 #include <SoftwareSerial.h>
 #include <EEPROM.h>
+
+#include "esp32/rom/cache.h" // For 'regular' esp32
 
 //////////////////////////////////////////
 // Gamepad layout, using variable names used in this code:
@@ -1140,10 +1143,14 @@ void setup() {
     Serial.println("#sdfmt done");
   } else if (mat == DANCE_1) { // no padding of BT packets
     HC05_pad = 0;
-    EEPROM.update(1, HC05_pad); // save for future boots
+    //EEPROM.update(1, HC05_pad); // save for future boots
+    EEPROM.put(1, HC05_pad); // save for future boots
+    EEPROM.commit();
   } else if (mat == DANCE_2) { // pad BT packets
     HC05_pad = 1;
-    EEPROM.update(1, HC05_pad); // save for future boots
+    //EEPROM.update(1, HC05_pad); // save for future boots
+    EEPROM.put(1, HC05_pad); // save for future boots
+    EEPROM.commit();
   }
 
 
@@ -1187,7 +1194,9 @@ void setup() {
     } else {
       Serial.println(dp); // not detected, something's wrong, just leave it at the default
     }
-    EEPROM.update(0, DpadStyle); // save for future boots
+    //EEPROM.update(0, DpadStyle); // save for future boots
+    EEPROM.put(0, DpadStyle); // save for future boots
+    EEPROM.commit();
     //Serial.println("EEUPDATED");
   } else {
     // check to see if a prior dpad style has been selected and stored in the
