@@ -3339,6 +3339,16 @@ void loop() {
 
   } else { // bluetooth mode (regardless of whether it's with or without the grip arm)
 
+    loopBluetoothHandler();    
+
+  }  // end of main if statement
+  
+
+
+}
+
+
+void loopBluetoothHandler(){
     digitalWrite(13, HIGH);   // LED13 is set to steady on in bluetooth mode
     if (millis() > ReportTime) { // do not use hexmillis here or on following line
           ReportTime = millis() + 2000;
@@ -3670,10 +3680,6 @@ void loop() {
         Serial.print("BADCHR:"); Serial.write(lastCmd); Serial.println("");
         beep(100,20);
     }  // end of switch
-    
-
-  }  // end of main if statement
-  
-
 
 }
+
