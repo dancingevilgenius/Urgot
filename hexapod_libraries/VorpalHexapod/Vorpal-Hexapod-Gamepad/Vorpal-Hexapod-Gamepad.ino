@@ -177,11 +177,14 @@ SoftwareSerial BlueTooth(A5,A4);  // connect bluetooth module Tx=A5=Yellow wire 
 byte DpadStyle = STDDPADSTYLE;
 
 // Pin definitions
+#define ESP32_A1 5  // Carlos making placeholders
+#define ESP32_A2 6  // Carlos making placeholders
+#define ESP32_A3 7  // Carlos making placeholders
 
-#define DpadPin A1
-#define VCCA1 A2    // we play a trick to power the dpad buttons, use adjacent unusued analog ports for power
-#define GNDA1 A3    // Yes, you can make an analog port into a digital output!
-#define SDCHIPSELECT 10   // chip select pin for the SD card reader
+#define DpadPin ESP32_A1
+#define VCCA1   ESP32_A2    // we play a trick to power the dpad buttons, use adjacent unusued analog ports for power
+#define GNDA1   ESP32_A3    // Yes, you can make an analog port into a digital output!
+#define SDCHIPSELECT 10     // chip select pin for the SD card reader
 
 // definitions to decode the 4x4 button matrix
 
